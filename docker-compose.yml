@@ -25,6 +25,9 @@ services:
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+      - ./db/conf.d:/etc/mysql/conf.d
     env_file:
       - .env
 
@@ -52,5 +55,8 @@ services:
       MYSQL_DATABASE: otherdatabase
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+      - ./db/conf.d:/etc/mysql/conf.d
     env_file:
       - .env
