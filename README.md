@@ -29,3 +29,7 @@ brew install mysql
 ```bash
 docker-compose up --build
 ```
+
+# いろいろ確認
+http://localhost:8080/  
+http://localhost:8081/
