@@ -27,9 +27,9 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
-      - ./db/conf.d:/etc/mysql/conf.d
-    env_file:
-      - .env
+      - ./db/conf.d:/etc/mysql/conf.d:ro
+      - app1-mysql-data:/var/lib/mysql
+    command: --skip-host-cache --pid-file=/var/lib/mysql/mysqld.pid
 
   app2:
     build:
@@ -57,6 +57,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
-      - ./db/conf.d:/etc/mysql/conf.d
-    env_file:
-      - .env
+      - ./db/conf.d:/etc/mysql/conf.d:ro
+      - app2-mysql-data:/var/lib/mysql
+    command: --skip-host-cache --pid-file=/var/lib/mysql/mysqld.pid
+
+volumes:
+  app1-mysql-data:
+  app2-mysql-data:

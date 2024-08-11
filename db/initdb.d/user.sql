@@ -4,4 +4,3 @@ CREATE TABLE user (
     PRIMARY KEY (id)
 );
 insert into user values (null,'test_user01');
-commit;
