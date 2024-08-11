@@ -1,22 +1,22 @@
 version: '3.9'
 
 services:
-  app1:
+  service1:
     build:
-      context: project1/
+      context: service1/
     ports:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://app1-db:3306/mydatabase
+      SPRING_DATASOURCE_URL: jdbc:mysql://service1-db:3306/mydatabase
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     depends_on:
-      - app1-db
+      - service1-db
     env_file:
       - .env
 
-  app1-db:
+  service1-db:
     image: mysql:8.0
     ports:
       - "3306:3306"
@@ -28,25 +28,31 @@ services:
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
       - ./db/conf.d:/etc/mysql/conf.d:ro
-      - app1-mysql-data:/var/lib/mysql
-    command: --skip-host-cache --pid-file=/var/lib/mysql/mysqld.pid
+      - service1-mysql-data:/var/lib/mysql
+    command: --pid-file=/var/run/mysqld/mysqld.pid
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -u${DB_USER} -p${DB_PASSWORD} || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
-  app2:
+  service2:
     build:
-      context: project2/
+      context: service2/
     ports:
       - "8081:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://app2-db:3306/otherdatabase
+      SPRING_DATASOURCE_URL: jdbc:mysql://service2-db:3306/otherdatabase
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     depends_on:
-      - app2-db
+      - service2-db
     env_file:
       - .env
 
-  app2-db:
+  service2-db:
     image: mysql:8.0
     ports:
       - "3307:3306"
@@ -58,9 +64,15 @@ services:
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
       - ./db/conf.d:/etc/mysql/conf.d:ro
-      - app2-mysql-data:/var/lib/mysql
-    command: --skip-host-cache --pid-file=/var/lib/mysql/mysqld.pid
+      - service2-mysql-data:/var/lib/mysql
+    command: --pid-file=/var/run/mysqld/mysqld.pid
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -u${DB_USER} -p${DB_PASSWORD} || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 volumes:
-  app1-mysql-data:
-  app2-mysql-data:
+  service1-mysql-data:
+  service2-mysql-data:
