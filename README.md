@@ -106,17 +106,6 @@ npm -v # "10.x.x" と表示されるはずです
 npm install --save-dev prettier prettier-plugin-sql
 ```
 
-# SQLファイルの一括フォーマット 
-
-プロジェクト内のすべてのSQLファイルを一括でフォーマットするには、プロジェクトフォルダのルートディレクトリで以下のコマンドを実行します。IntelliJのFile Watchersなどに設定して自動化することもできます。
-
-
-```bash
-npx prettier --write "**/*.sql"
-```
-
-これにより、プロジェクト内のすべてのSQLファイルがPrettierによってフォーマットされます。
-
 # 起動方法 
 
 ## 1. Docker Composeでコンテナを起動 
@@ -135,3 +124,37 @@ docker-compose up --build
 - [http://localhost:8080/](http://localhost:8080/)
  
 - [http://localhost:8081/](http://localhost:8081/)
+
+# SQLファイルの一括フォーマット 
+
+プロジェクト内のすべてのSQLファイルを一括でフォーマットするには、プロジェクトフォルダのルートディレクトリで以下のコマンドを実行します。IntelliJのFile Watchersなどに設定して自動化することもできます。
+
+
+```bash
+npx prettier --write "**/*.sql"
+```
+
+これにより、プロジェクト内のすべてのSQLファイルがPrettierによってフォーマットされます。
+
+# IntelliJでのリモートデバッグ設定 
+
+プロジェクトには、複数のサービスをリモートデバッグするためのIntelliJの設定ファイルが含まれています。この設定により、Dockerコンテナ内で動作するサービスを効率的にデバッグすることが可能です。
+
+### 設定ファイル 
+リモートデバッグ設定ファイルは、プロジェクトのルートディレクトリにある`.run`フォルダに配置されています。 
+- `Docker Remote Debug - Service1.run.xml`
+ 
+- `Docker Remote Debug - Service2.run.xml`
+ 
+- `Multi-Service Debug.run.xml`
+
+### 使用方法 
+ 
+1. **IntelliJを開き、プロジェクトをロード** : 設定ファイルが適切に配置されていると、IntelliJの`Run/Debug Configurations`で「Multi-Service Debug」や「Docker Remote Debug - Service1」「Docker Remote Debug - Service2」が表示されます。
+ 
+2. **「Multi-Service Debug」設定を選択** : 複数のサービスを同時にリモートデバッグするための設定が自動でロードされます。
+ 
+3. **リモートデバッグを開始** : Dockerコンテナ上で動作している`Service1`と`Service2`を同時にデバッグできます。
+
+これにより、複数のサービスを効率的にデバッグできる環境が整います。必要に応じて、各サービスの設定をカスタマイズすることも可能です。
+
