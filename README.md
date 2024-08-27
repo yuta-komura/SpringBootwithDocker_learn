@@ -134,7 +134,8 @@ docker-compose up --build
 npx prettier --write "**/*.sql"
 ```
 
-これにより、プロジェクト内のすべてのSQLファイルがPrettierによってフォーマットされます。
+これにより、プロジェクト内のすべてのSQLファイルがPrettierによってフォーマットされます。  
+さらに、SQLファイルのフォーマット設定をカスタマイズするために、`prettier.config.js`ファイルでSQLフォーマットに関する設定を行い、プロジェクト全体に適用することが可能です。
 
 # IntelliJでのリモートデバッグ設定 
 
