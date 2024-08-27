@@ -1,77 +1,108 @@
 version: '3.9'
 
 services:
+  # Zookeeperサービス
+  zookeeper:
+    image: bitnami/zookeeper:3.8
+    container_name: zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    ports:
+      - "2181:2181"  # Zookeeperのデフォルトポート
+
+  # Kafkaサービス
+  kafka:
+    image: bitnami/kafka:3.5
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    ports:
+      - "9092:9092"  # Kafkaのデフォルトポート
+
+  # service1アプリケーション
   service1:
     build:
       context: service1/
+    container_name: service1
     ports:
-      - "8080:8080"
+      - "8080:8080"  # service1のアプリケーションポート
+      - "5005:5005" # リモートデバッグ用のポート
     environment:
-      SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://service1-db:3306/mydatabase
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://service1-db:3306/mydatabase
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092  # Kafkaのブートストラップサーバー
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     depends_on:
       - service1-db
+      - kafka
     env_file:
-      - .env
+      - .env  # 環境変数ファイルの指定
 
+  # service1用データベース
   service1-db:
     image: mysql:8.0
-    ports:
-      - "3306:3306"
+    container_name: service1-db
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=mydatabase
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3306:3306"  # MySQLのデフォルトポート
     volumes:
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
-      - ./db/conf.d:/etc/mysql/conf.d:ro
-      - service1-mysql-data:/var/lib/mysql
-    command: --pid-file=/var/run/mysqld/mysqld.pid
+      - service1-mysql-data:/var/lib/mysql  # データ永続化用ボリューム
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -u${DB_USER} -p${DB_PASSWORD} || exit 1"]
-      interval: 60s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 40s
+      retries: 5
 
+  # service2アプリケーション
   service2:
     build:
       context: service2/
+    container_name: service2
     ports:
-      - "8081:8080"
+      - "8081:8080"  # service2のアプリケーションポート
     environment:
-      SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://service2-db:3306/otherdatabase
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://service2-db:3306/otherdatabase
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092  # Kafkaのブートストラップサーバー
     depends_on:
       - service2-db
+      - kafka
     env_file:
-      - .env
+      - .env  # 環境変数ファイルの指定
 
+  # service2用データベース
   service2-db:
     image: mysql:8.0
-    ports:
-      - "3307:3306"
+    container_name: service2-db
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: otherdatabase
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=otherdatabase
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3307:3306"  # 異なるホストポートでのMySQL接続
     volumes:
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
-      - ./db/conf.d:/etc/mysql/conf.d:ro
-      - service2-mysql-data:/var/lib/mysql
-    command: --pid-file=/var/run/mysqld/mysqld.pid
+      - service2-mysql-data:/var/lib/mysql  # データ永続化用ボリューム
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -u${DB_USER} -p${DB_PASSWORD} || exit 1"]
-      interval: 60s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 40s
+      retries: 5
 
 volumes:
   service1-mysql-data:
