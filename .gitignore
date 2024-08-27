@@ -1,65 +1,138 @@
+##############################
 # OS-generated files
-.DS_Store        # macOSが生成する一時ファイル
-Thumbs.db        # Windowsが生成するサムネイルキャッシュ
-Desktop.ini      # Windowsデスクトップが生成する設定ファイル
+##############################
 
+# macOSが生成する一時ファイル
+.DS_Store
+# Windowsが生成するサムネイルキャッシュ
+Thumbs.db
+# Windowsデスクトップが生成する設定ファイル
+Desktop.ini
+
+##############################
 # Node.js関連のファイル/ディレクトリ
-node_modules/    # 依存パッケージのディレクトリ
-npm-debug.log*   # npmのデバッグログファイル
-yarn-error.log   # Yarnのエラーログファイル
-.pnp/            # Yarn Plug'n'Play用ディレクトリ
-.pnp.js          # Yarn Plug'n'Play用ファイル
+##############################
 
+# 依存パッケージのディレクトリ
+node_modules/
+# npmのデバッグログファイル
+npm-debug.log*
+# Yarnのエラーログファイル
+yarn-error.log
+# Yarn Plug'n'Play用ディレクトリ
+.pnp/
+# Yarn Plug'n'Play用ファイル
+.pnp.js
+
+##############################
 # IDEs and Editors
-.vscode/         # Visual Studio Codeの設定ディレクトリ
-.idea/           # IntelliJ IDEAの設定ディレクトリ
-*.iml            # IntelliJ IDEAのプロジェクトファイル
-*.sublime-project # Sublime Textのプロジェクトファイル
-*.sublime-workspace # Sublime Textのワークスペースファイル
-*.swp            # Vimが生成する一時ファイル
-*.swo            # Vimが生成する一時ファイル
-*~               # 一般的なバックアップファイル
-.project         # Eclipseプロジェクトファイル
-.classpath       # Eclipseクラスパスファイル
-.c9/             # Cloud9 IDEの設定ディレクトリ
+##############################
 
+# Visual Studio Codeの設定ディレクトリ
+.vscode/
+# IntelliJ IDEAの設定ディレクトリ
+.idea/
+# IntelliJ IDEAのプロジェクトファイル
+*.iml
+# Sublime Textのプロジェクトファイル
+*.sublime-project
+# Sublime Textのワークスペースファイル
+*.sublime-workspace
+# Vimが生成する一時ファイル
+*.swp
+# Vimが生成する一時ファイル
+*.swo
+# 一般的なバックアップファイル
+*~
+# Eclipseプロジェクトファイル
+.project
+# Eclipseクラスパスファイル
+.classpath
+# Cloud9 IDEの設定ディレクトリ
+.c9/
+
+##############################
 # Java関連のファイル/ディレクトリ
-*.class          # コンパイルされたJavaクラスファイル
-*.jar            # Javaアーカイブファイル
-*.war            # Webアーカイブファイル
-*.ear            # Enterpriseアーカイブファイル
-target/          # Maven/Gradleが生成するビルド成果物ディレクトリ
-.gradle/         # Gradleのキャッシュディレクトリ
-out/             # Eclipseや他のIDEが生成するビルド成果物ディレクトリ
+##############################
 
+# コンパイルされたJavaクラスファイル
+*.class
+# Javaアーカイブファイル
+*.jar
+# Webアーカイブファイル
+*.war
+# Enterpriseアーカイブファイル
+*.ear
+# Maven/Gradleが生成するビルド成果物ディレクトリ
+target/
+# Gradleのキャッシュディレクトリ
+.gradle/
+# Eclipseや他のIDEが生成するビルド成果物ディレクトリ
+out/
+
+##############################
 # Logs
-logs/            # 一般的なログディレクトリ
-*.log            # 一般的なログファイル
-*.pid            # プロセスIDファイル
-*.seed           # データベースシードファイル
+##############################
 
+# 一般的なログディレクトリ
+logs/
+# 一般的なログファイル
+*.log
+# プロセスIDファイル
+*.pid
+# データベースシードファイル
+*.seed
+
+##############################
 # Docker関連のファイル
-.dockerignore    # Dockerの無視設定ファイル
-docker-compose.override.yml  # Docker Composeの上書き設定ファイル
-docker-compose-*.yml  # その他のDocker Compose設定ファイル
+##############################
 
+# Dockerの無視設定ファイル
+.dockerignore
+# Docker Composeの上書き設定ファイル
+docker-compose.override.yml
+# その他のDocker Compose設定ファイル
+docker-compose-*.yml
+
+##############################
 # 環境変数ファイル
-.env.local       # ローカル環境変数
-.env.test        # テスト環境変数
-.env.production  # 本番環境変数
+##############################
 
+# ローカル環境変数
+.env.local
+# テスト環境変数
+.env.test
+# 本番環境変数
+.env.production
+
+##############################
 # ビルド成果物
-dist/            # 一般的なビルド成果物のディレクトリ
-build/           # ビルドディレクトリ (複数のツールで使用)
+##############################
 
+# 一般的なビルド成果物のディレクトリ
+dist/
+# ビルドディレクトリ (複数のツールで使用)
+build/
+
+##############################
 # テスト関連のディレクトリ
-coverage/        # テストカバレッジレポートを保存するディレクトリ
+##############################
 
+# テストカバレッジレポートを保存するディレクトリ
+coverage/
+
+##############################
 # 依存パッケージディレクトリ
-node_modules/    # Node.jsの依存パッケージディレクトリ
-bower_components/ # Bowerの依存パッケージディレクトリ (古いプロジェクトで使用)
+##############################
 
+# Bowerの依存パッケージディレクトリ (古いプロジェクトで使用)
+bower_components/
+
+##############################
 # システムファイル
-*.lock           # ロックファイル (npm, yarn, pipなどで使用)
-.history/        # プロジェクトのローカルヒストリーディレクトリ
+##############################
 
+# ロックファイル (npm, yarn, pipなどで使用)
+*.lock
+# プロジェクトのローカルヒストリーディレクトリ
+.history/
