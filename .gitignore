@@ -1,37 +1,65 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# OS-generated files
+.DS_Store        # macOSが生成する一時ファイル
+Thumbs.db        # Windowsが生成するサムネイルキャッシュ
+Desktop.ini      # Windowsデスクトップが生成する設定ファイル
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Node.js関連のファイル/ディレクトリ
+node_modules/    # 依存パッケージのディレクトリ
+npm-debug.log*   # npmのデバッグログファイル
+yarn-error.log   # Yarnのエラーログファイル
+.pnp/            # Yarn Plug'n'Play用ディレクトリ
+.pnp.js          # Yarn Plug'n'Play用ファイル
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# IDEs and Editors
+.vscode/         # Visual Studio Codeの設定ディレクトリ
+.idea/           # IntelliJ IDEAの設定ディレクトリ
+*.iml            # IntelliJ IDEAのプロジェクトファイル
+*.sublime-project # Sublime Textのプロジェクトファイル
+*.sublime-workspace # Sublime Textのワークスペースファイル
+*.swp            # Vimが生成する一時ファイル
+*.swo            # Vimが生成する一時ファイル
+*~               # 一般的なバックアップファイル
+.project         # Eclipseプロジェクトファイル
+.classpath       # Eclipseクラスパスファイル
+.c9/             # Cloud9 IDEの設定ディレクトリ
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Java関連のファイル/ディレクトリ
+*.class          # コンパイルされたJavaクラスファイル
+*.jar            # Javaアーカイブファイル
+*.war            # Webアーカイブファイル
+*.ear            # Enterpriseアーカイブファイル
+target/          # Maven/Gradleが生成するビルド成果物ディレクトリ
+.gradle/         # Gradleのキャッシュディレクトリ
+out/             # Eclipseや他のIDEが生成するビルド成果物ディレクトリ
 
-### VS Code ###
-.vscode/
+# Logs
+logs/            # 一般的なログディレクトリ
+*.log            # 一般的なログファイル
+*.pid            # プロセスIDファイル
+*.seed           # データベースシードファイル
+
+# Docker関連のファイル
+.dockerignore    # Dockerの無視設定ファイル
+docker-compose.override.yml  # Docker Composeの上書き設定ファイル
+docker-compose-*.yml  # その他のDocker Compose設定ファイル
+
+# 環境変数ファイル
+.env.local       # ローカル環境変数
+.env.test        # テスト環境変数
+.env.production  # 本番環境変数
+
+# ビルド成果物
+dist/            # 一般的なビルド成果物のディレクトリ
+build/           # ビルドディレクトリ (複数のツールで使用)
+
+# テスト関連のディレクトリ
+coverage/        # テストカバレッジレポートを保存するディレクトリ
+
+# 依存パッケージディレクトリ
+node_modules/    # Node.jsの依存パッケージディレクトリ
+bower_components/ # Bowerの依存パッケージディレクトリ (古いプロジェクトで使用)
+
+# システムファイル
+*.lock           # ロックファイル (npm, yarn, pipなどで使用)
+.history/        # プロジェクトのローカルヒストリーディレクトリ
+

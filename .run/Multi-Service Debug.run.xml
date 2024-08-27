@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Multi-Service Debug" type="CompoundRunConfigurationType">
+    <toRun name="Docker Remote Debug - Service1" type="Remote" />
+    <toRun name="Docker Remote Debug - Service2" type="Remote" />
+    <method v="2" />
+  </configuration>
+</component>

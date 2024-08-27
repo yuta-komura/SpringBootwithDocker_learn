@@ -1,3 +1,6 @@
-select *
-from user
-where id = /* id */99;
+select
+  *
+from
+  user
+where
+  id = /* id */ 99;
