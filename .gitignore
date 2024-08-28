@@ -40,7 +40,6 @@ yarn-error.log
 *.sublime-workspace
 # Vimが生成する一時ファイル
 *.swp
-# Vimが生成する一時ファイル
 *.swo
 # 一般的なバックアップファイル
 *~
@@ -69,6 +68,8 @@ target/
 .gradle/
 # Eclipseや他のIDEが生成するビルド成果物ディレクトリ
 out/
+# Javaのbinディレクトリ
+bin/
 
 ##############################
 # Logs

@@ -5,14 +5,13 @@ import org.seasar.doma.Id;
 
 @Entity(immutable = true)
 public class User {
-    @Id
-    public final Long id;
-    public final String name;
+  @Id public final Long id;
+  public final String name;
 
-    public User(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+  public User(Long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
-    // Getters and Setters
+  // Getters and Setters
 }
