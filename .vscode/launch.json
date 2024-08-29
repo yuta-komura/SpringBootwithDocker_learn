@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Attach) - Remote Service1",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005,
+            "projectName": "your-project-name"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach) - Remote Service2",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5006,
+            "projectName": "your-project-name"
+        }
+    ]
+}

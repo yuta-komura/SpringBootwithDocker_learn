@@ -1,0 +1,16 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": ".*\\.sql$",
+        "cmd": "node ${workspaceFolder}/tools/format-and-replace-sql.js ${file}"
+      },
+      {
+        "match": ".*\\.java$",
+        "cmd": "java -jar ${workspaceFolder}/tools/google-java-format-1.23.0-all-deps.jar --replace ${file}"
+      },
+    ]
+  }
+}

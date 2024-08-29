@@ -28,8 +28,6 @@ yarn-error.log
 # IDEs and Editors
 ##############################
 
-# Visual Studio Codeの設定ディレクトリ
-.vscode/
 # IntelliJ IDEAの設定ディレクトリ
 .idea/
 # IntelliJ IDEAのプロジェクトファイル
@@ -58,6 +56,7 @@ yarn-error.log
 *.class
 # Javaアーカイブファイル
 *.jar
+!google-java-format-1.23.0-all-deps.jar
 # Webアーカイブファイル
 *.war
 # Enterpriseアーカイブファイル
