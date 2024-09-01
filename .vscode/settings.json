@@ -4,7 +4,7 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": ".*\\.md$",
+        "match": ".*\\.(md|yml|json|js|css|html|xml|yaml)$",
         "cmd": "npx prettier --write ${file}"
       },
       {
@@ -14,7 +14,7 @@
       {
         "match": ".*\\.java$",
         "cmd": "java -jar ${workspaceFolder}/tools/google-java-format-1.23.0-all-deps.jar --replace ${file}"
-      },
+      }
     ]
   }
 }

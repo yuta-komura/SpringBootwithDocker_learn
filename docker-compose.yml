@@ -6,7 +6,7 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     ports:
-      - "2181:2181"  # Zookeeperのデフォルトポート
+      - '2181:2181' # Zookeeperのデフォルトポート
     volumes:
       - zookeeper-data:/bitnami/zookeeper
 
@@ -24,7 +24,7 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
       - ALLOW_PLAINTEXT_LISTENER=yes
     ports:
-      - "9092:9092"  # Kafkaのデフォルトポート
+      - '9092:9092' # Kafkaのデフォルトポート
     volumes:
       - kafka-data:/bitnami/kafka
 
@@ -34,14 +34,14 @@ services:
       context: service1/
     container_name: service1
     ports:
-      - "8080:8080"  # service1のアプリケーションポート
-      - "5005:5005"  # service1用リモートデバッグポート
+      - '8080:8080' # service1のアプリケーションポート
+      - '5005:5005' # service1用リモートデバッグポート
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:mysql://service1-db:3306/mydatabase
       - SPRING_DATASOURCE_USERNAME=${DB_USER}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
-      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092  # Kafkaのブートストラップサーバー
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092 # Kafkaのブートストラップサーバー
       - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     depends_on:
       - service1-db
@@ -57,12 +57,12 @@ services:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
-      - "3306:3306"  # MySQLのデフォルトポート
+      - '3306:3306' # MySQLのデフォルトポート
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
-      - service1-mysql-data:/var/lib/mysql  # データ永続化用ボリューム
+      - service1-mysql-data:/var/lib/mysql # データ永続化用ボリューム
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 30s
       timeout: 10s
       retries: 5
@@ -73,14 +73,14 @@ services:
       context: service2/
     container_name: service2
     ports:
-      - "8081:8080"  # service2のアプリケーションポート
-      - "5006:5006"  # service2用リモートデバッグポート
+      - '8081:8080' # service2のアプリケーションポート
+      - '5006:5006' # service2用リモートデバッグポート
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:mysql://service2-db:3306/otherdatabase
       - SPRING_DATASOURCE_USERNAME=${DB_USER}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
-      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092  # Kafkaのブートストラップサーバー
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092 # Kafkaのブートストラップサーバー
       - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
     depends_on:
       - service2-db
@@ -96,11 +96,11 @@ services:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
-      - "3307:3306"  # 異なるホストポートでのMySQL接続
+      - '3307:3306' # 異なるホストポートでのMySQL接続
     volumes:
-      - service2-mysql-data:/var/lib/mysql  # データ永続化用ボリューム
+      - service2-mysql-data:/var/lib/mysql # データ永続化用ボリューム
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 30s
       timeout: 10s
       retries: 5
