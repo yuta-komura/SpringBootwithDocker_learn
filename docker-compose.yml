@@ -59,7 +59,6 @@ services:
     ports:
       - '3306:3306' # MySQLのデフォルトポート
     volumes:
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
       - service1-mysql-data:/var/lib/mysql # データ永続化用ボリューム
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
