@@ -92,7 +92,7 @@ npm -v # "10.x.x" と表示されるはずです
 
 ## 3. PrettierとPrettier SQL Pluginのインストール
 
-プロジェクト内のSQLファイルを一括でフォーマットするために、
+プロジェクト内のSQLファイルを一括でフォーマットするために、  
 以下のコマンドをプロジェクトフォルダのルートディレクトリで実行して、PrettierとPrettier SQL Pluginをインストールします。
 
 ```bash

@@ -4,6 +4,10 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
+        "match": ".*\\.md$",
+        "cmd": "npx prettier --write ${file}"
+      },
+      {
         "match": ".*\\.sql$",
         "cmd": "node ${workspaceFolder}/tools/format-and-replace-sql.js ${file}"
       },
