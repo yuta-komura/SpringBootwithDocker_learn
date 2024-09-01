@@ -92,15 +92,14 @@ npm -v # "10.x.x" と表示されるはずです
 
 ## 3. PrettierとPrettier SQL Pluginのインストール
 
-プロジェクト内のSQLファイルを一括でフォーマットするために、  
+プロジェクト内のSQLファイルを一括でフォーマットするために、
 以下のコマンドをプロジェクトフォルダのルートディレクトリで実行して、PrettierとPrettier SQL Pluginをインストールします。
 
 ```bash
 npm install --save-dev prettier prettier-plugin-sql
 ```
+
 npm install
-
-
 
 # 起動方法
 
@@ -128,6 +127,7 @@ IntelliJのFile Watchersなどに設定して自動化することもできま�
 ```bash
 npx prettier --write "**/*.sql"
 ```
+
 node prettier_and_replace.js
 
 これにより、プロジェクト内のすべてのSQLファイルがPrettierによってフォーマットされます。  
@@ -157,7 +157,3 @@ node prettier_and_replace.js
 3. **リモートデバッグを開始** : Dockerコンテナ上で動作している`Service1`と`Service2`を同時にデバッグできます。
 
 これにより、複数のサービスを効率的にデバッグできる環境が整います。必要に応じて、各サービスの設定をカスタマイズすることも可能です。
-
-
-
-
