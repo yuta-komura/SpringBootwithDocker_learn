@@ -4,20 +4,18 @@ FROM amazoncorretto:21
 # 作業ディレクトリを作成
 WORKDIR /app
 
-# Gradle Wrapper をコピー
-COPY gradlew gradlew.bat ./
-COPY build.gradle settings.gradle ./
+# プロジェクトの必要なファイルを最初にコピー
+COPY build.gradle settings.gradle gradlew ./
 COPY gradle ./gradle
 
-# 必要な依存関係をダウンロード
+# 依存関係のダウンロード（キャッシュを有効にするため）
 RUN ./gradlew build --no-daemon -x test
 
-# プロジェクトのソースコードをコピー
+# 残りのプロジェクトをコピー
 COPY . .
 
-# プロジェクトをビルド
+# プロジェクトをビルド（テストを実行）
 RUN ./gradlew build --no-daemon
 
 # Spring Boot アプリケーションを実行
 CMD ["java", "-jar", "build/libs/app.jar"]
-

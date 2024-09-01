@@ -26,7 +26,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.mysql:mysql-connector-j:9.0.0'
-    implementation 'org.springframework.kafka:spring-kafka' // Kafka用の依存関係を追加
+    implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -34,6 +34,8 @@ dependencies {
     annotationProcessor 'org.seasar.doma:doma-processor:2.58.0'
     implementation 'org.seasar.doma:doma-core:2.58.0'
     implementation 'org.seasar.doma:doma-slf4j:2.58.0'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
 }
 
 tasks.named('test') {

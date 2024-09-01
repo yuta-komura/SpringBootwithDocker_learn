@@ -1,6 +1,6 @@
 select
   *
 from
-  user
+  User
 where
-  id = /* id */99;
+  Id = /* id */99;

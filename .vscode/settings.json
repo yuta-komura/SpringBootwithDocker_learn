@@ -4,7 +4,7 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": ".*\\.(md|yml|json|js|css|html|xml|yaml)$",
+        "match": ".*\\.(md|yml|json|js|css|html|xml|yaml|properties)$",
         "cmd": "npx prettier --write ${file}"
       },
       {

@@ -1,6 +1,6 @@
 module.exports = {
   // 1行の最大文字数（これ以上の文字数は改行される）
-  printWidth: 80,
+  printWidth: 120,
   // インデントのスペース数（2スペースを使用）
   tabWidth: 2,
   // タブではなくスペースを使用
@@ -19,6 +19,11 @@ module.exports = {
   arrowParens: 'always',
   // 改行コードをLFに統一
   endOfLine: 'lf',
-  // SQLフォーマット用のプラグイン
-  plugins: ['prettier-plugin-sql'],
+  // プラグインの追加
+  plugins: [
+    // SQLフォーマット用のプラグイン
+    'prettier-plugin-sql',
+    // propertiesファイルのフォーマット用プラグイン
+    'prettier-plugin-properties',
+  ],
 };

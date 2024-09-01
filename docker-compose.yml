@@ -43,6 +43,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092 # Kafkaのブートストラップサーバー
       - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    volumes:
+      - ./db/flyway/sql:/flyway/sql
     depends_on:
       - service1-db
       - kafka
@@ -60,6 +62,7 @@ services:
       - '3306:3306' # MySQLのデフォルトポート
     volumes:
       - service1-mysql-data:/var/lib/mysql # データ永続化用ボリューム
+      - ./db/mysql/conf.d:/etc/mysql/conf.d # カスタムMySQL設定をマウント
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 30s
@@ -81,6 +84,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092 # Kafkaのブートストラップサーバー
       - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
+    volumes:
+      - ./db/flyway/sql:/flyway/sql
     depends_on:
       - service2-db
       - kafka
@@ -98,6 +103,7 @@ services:
       - '3307:3306' # 異なるホストポートでのMySQL接続
     volumes:
       - service2-mysql-data:/var/lib/mysql # データ永続化用ボリューム
+      - ./db/mysql/conf.d:/etc/mysql/conf.d # カスタムMySQL設定をマウント
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 30s
