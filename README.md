@@ -1,13 +1,3 @@
-# クローン前の設定
-
-**Windowsユーザーの場合**
-
-```bash
-git config --global core.autocrlf true
-```
-
-- `core.autocrlf`を`true`に設定することで、Windows上でファイルをチェックアウトする際に、自動的に改行コードが適切に変換されます。
-
 # 環境構築
 
 ## 1. Java 21 (OpenJDK) のインストール

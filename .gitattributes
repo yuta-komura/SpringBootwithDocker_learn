@@ -1,0 +1,19 @@
+# 自動改行変換を適用する設定
+* text=auto
+
+# 特定のファイル拡張子に対して明示的にLFを使用するように設定
+*.sh eol=lf
+*.bash eol=lf
+*.yml eol=lf
+*.yaml eol=lf
+*.json eol=lf
+*.sql eol=lf
+*.java eol=lf
+*.gradle eol=lf
+
+# バイナリファイルには改行変換を適用しない
+*.jpg binary
+*.png binary
+*.gif binary
+*.zip binary
+*.exe binary
