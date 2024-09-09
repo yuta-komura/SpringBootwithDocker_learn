@@ -2,7 +2,7 @@
 
 ## 1. Java 21 (OpenJDK) のインストール
 
-### Windows
+### Windowsユーザー
 
 WindowsでJava 21 (OpenJDK) をインストールするには、以下の手順をPowerShellで実行します。
 
@@ -11,10 +11,10 @@ WindowsでJava 21 (OpenJDK) をインストールするには、以下の手順�
 winget install --id=EclipseAdoptium.Temurin.21.JDK -e
 
 # Java のバージョンを確認
-java -version # "java version '21'" と表示されるはずです
+java -version
 ```
 
-### macOS
+### macOSユーザー
 
 macOSでJava 21 (OpenJDK) をインストールするには、以下の手順をターミナルで実行します。
 
@@ -28,12 +28,12 @@ echo 'export PATH="/usr/local/opt/openjdk@21/bin:$PATH"' >> ~/.bash_profile
 source ~/.bash_profile
 
 # Java のバージョンを確認
-java -version # "java version '21'" と表示されるはずです
+java -version
 ```
 
 ## 2. Node.jsのインストール
 
-### Windows
+### Windowsユーザー
 
 WindowsでNode.jsをインストールするには、以下の手順をPowerShellで実行します。
 
@@ -48,10 +48,10 @@ fnm env --use-on-cd | Out-String | Invoke-Expression
 fnm use --install-if-missing 20
 
 # Node.js のバージョンを確認
-node -v # "v20.x.x" と表示されるはずです
+node -v
 
 # npm のバージョンを確認
-npm -v # "10.x.x" と表示されるはずです
+npm -v
 
 # 環境変数に追加 (コマンドプロンプトや他のシェルでも利用可能にする)
 $fnmPath = (fnm env --use-on-cd | Out-String).Split(";") | Select-String -Pattern "C:\\.*\.fnm\\node-versions\\v20.*\\bin"
@@ -59,7 +59,7 @@ $fnmPath = (fnm env --use-on-cd | Out-String).Split(";") | Select-String -Patter
 [System.Environment]::SetEnvironmentVariable("PATH", "$env:PATH;$fnmPath", [System.EnvironmentVariableTarget]::User)
 ```
 
-### macOS
+### macOSユーザー
 
 macOSでNode.jsをインストールするには、以下の手順をターミナルで実行します。
 
@@ -74,22 +74,33 @@ source ~/.bashrc
 fnm use --install-if-missing 20
 
 # Node.js のバージョンを確認
-node -v # "v20.x.x" と表示されるはずです
+node -v
 
 # npm のバージョンを確認
-npm -v # "10.x.x" と表示されるはずです
+npm -v
 ```
 
-## 3. PrettierとPrettier SQL Pluginのインストール
+## 3. 依存関係のインストール
 
-プロジェクト内のSQLファイルを一括でフォーマットするために、  
-以下のコマンドをプロジェクトフォルダのルートディレクトリで実行して、PrettierとPrettier SQL Pluginをインストールします。
+プロジェクトフォルダのルートディレクトリで以下のコマンドを実行してください。
 
 ```bash
-npm install --save-dev prettier prettier-plugin-sql
+npm install
 ```
 
-npm install
+### VSCodeユーザー
+
+```bash
+code --install-extension tools/emeraldwalk.RunOnSave-0.2.0.vsix
+```
+
+### IntelliJ IDEAユーザー
+
+IntelliJ IDEAを閉じて下記コマンドを実行するか、[File Watchers](https://plugins.jetbrains.com/plugin/7177-file-watchers)からインストールしてください。
+
+```bash
+idea installPlugins com.intellij.plugins.watcher
+```
 
 # 起動方法
 
@@ -109,7 +120,9 @@ docker-compose up --build
 
 - [http://localhost:8081/](http://localhost:8081/)
 
-# SQLファイルの一括フォーマット
+# フォーマッター
+
+### VSCodeユーザー
 
 プロジェクト内のすべてのSQLファイルを一括でフォーマットするには、プロジェクトフォルダのルートディレクトリで以下のコマンドを実行します。  
 IntelliJのFile Watchersなどに設定して自動化することもできます。
